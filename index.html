@@ -11,6 +11,7 @@
 	<script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.js" defer></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
     <style>
 
         .calendar-design{
@@ -24,6 +25,7 @@
         .calendar-design p{
             font-size: 30px;
         }
+
 
         body{
             background-image: url("img/nature_6.jpg");
@@ -46,14 +48,26 @@
             height: 120px
         }
 
+        #scroll{
+            height: 80px;
+        }
 
-        @media screen and (max-width: 900px) {
+        #eventsContainer{
+            max-height: 150px;
+        }
+
+
+        @media screen and (max-width: 750px) {
 
             .logo{
                 width: 100vh; 
                 display: flex;
                 justify-content: center;
                 align-items: center;
+            }
+
+            .container{
+                margin-top: 30px;
             }
 
             #title-responsive{
@@ -90,7 +104,7 @@
             }
 
             #days{
-                font-size: 10px;
+                font-size: 12px;
 
             }
 
@@ -108,17 +122,42 @@
                 
             }
         
-            
-
             #event-color{
                 padding: 1px;
-                width: 10px;
             }
 
             #day-info{
                 margin-top: 100px;
                 width: 350px;
             }
+
+            #event_date{
+                font-size: 17px;
+            }
+
+            #scroll{
+                height: 30px;
+            }
+
+            #eventsContainer{
+                max-height: 200px;
+            }
+
+            #sched-day{
+                font-size: 15px;
+            }
+
+            #title-responsive-modal{
+                font-size: 15px;
+       
+            }
+
+            #title-color-responsive{
+                margin: 0px;
+            }
+
+
+ 
 
   
         }
@@ -205,19 +244,21 @@
                                 <div id="border-responsiveness" class="px-4 pt-2 border-r-2 border-b-2 rounded-md relative"
                                 :class="{'bg-gradient-to-r from-cyan-400 to-blue-400 text-white': isToday(date) == true, 'text-gray-700': isToday(date) == false }">
                                     <div
-                                        id="days-num"
                                         @click="showDayta(date)"
+                                        id="days-num"
                                         x-text="date"
-                                        class="inline-flex w-6 h-6 items-center justify-center cursor-pointer text-center font-serif leading-none rounded-full transition ease-in-out duration-100"
+                                        class="inline-flex w-6 h-6 items-center justify-center text-center cursor-pointer font-serif leading-none rounded-full transition ease-in-out duration-100"
                                         :class="{'bg-blue-500 text-white': isToday(date) == true, 'text-gray-700': isToday(date) == false }"	
                                     ></div>
-                                    <div id="scroll" style="height: 80px;" class="max-h-[400px] overflow-y-auto [&::-webkit-scrollbar]:w-1 [&::-webkit-scrollbar-thumb]:bg-gray-300  ">
-            
+
+                                    <div id="scroll" class="max-h-[400px] overflow-y-auto [&::-webkit-scrollbar]:w-1 [&::-webkit-scrollbar-thumb]:bg-gray-300  ">
+                                         
                                         <template  x-for="event in events.filter(e => new Date(e.event_date).toDateString() ===  new Date(year, month, date).toDateString() )">
                                             
                                             <div
+                                                
                                                 id="event-color"
-                                                class="event-color px-1 py-1 rounded-lg mt-1 overflow-hidden border"
+                                                class="event-color px-2 py-1 rounded-lg mt-1 overflow-hidden border text-center"
                                                 :class="{
                                                     'border-blue-200 text-blue-800 bg-blue-100': event.event_theme === 'blue',
                                                     'border-red-200 text-red-800 bg-red-100': event.event_theme === 'red',
@@ -250,11 +291,12 @@
                     </div>
                     <div class="shadow w-full rounded-lg bg-white overflow-hidden w-full block p-8">
                         <input class="text-center w-full text-xl text-red-600 font-bold mb-8 border-0 border-none outline-none italic" type="text" id="event_date" x-model="event_date" readonly>
-                        <h2 class="font-bold text-2xl mb-8 text-gray-800 border-b pb-2 italic">Schedule for the day</h2>
-                        <div id="eventsContainer">
+                        <h2 id="sched-day" class="font-bold text-2xl mb-8 text-gray-800 border-b pb-2 italic">Schedule for the day</h2>
+                        <div id="eventsContainer" class="overflow-y-auto [&::-webkit-scrollbar]:w-1 [&::-webkit-scrollbar-thumb]:bg-gray-300">
                             
                             <template x-for="event in eventsToDisplay" :key="event.event_title">
                                 <div
+                                    id="title-color-responsive"
                                     class="px-1 py-1 rounded-lg mt-1 overflow-hidden "
                                     :class="{
                                         ' text-blue-800 ': event.event_theme === 'blue',
@@ -265,7 +307,7 @@
                                         ' text-purple-800 ': event.event_theme === 'purple'
                                     }"
                                 >
-                                    <div class="text-lg mb-2 italic" x-text="event.event_title"></div>
+                                    <div id="title-responsive-modal" class="text-lg mb-2 italic" x-text="event.event_title"></div>
                                 </div>
                             </template>
                             <p x-show="eventsToDisplay.length === 0" class="text-lg italic">No events</p>
@@ -278,7 +320,6 @@
     </div>
 
     <script>
-
     
         const MONTH_NAMES = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
         const DAYS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
@@ -286,8 +327,8 @@
 
         function app() {
             return {
-                
-                
+                showDaytaModal: false,
+
                 month: '',
                 year: '',
                 no_of_days: [],
@@ -309,7 +350,6 @@
                     { value: "purple", label: "Purple Theme" }
                 ],
     
-                showDaytaModal: false,
     
                 initDate() {
 
@@ -332,8 +372,6 @@
                 },
     
             
-
-    
                 getEvents() {
 
                     $.ajax({
@@ -358,12 +396,14 @@
                 showDayta(date) {
                     this.showDaytaModal = true;
                     this.event_date = new Date(this.year, this.month, date).toDateString();
-
+ 
                     const eventsOnDate = this.events.filter(e => 
                         new Date(e.event_date).toDateString() === new Date(this.year, this.month, date).toDateString()
+                        
                     );
-
+ 
                     this.eventsToDisplay = eventsOnDate;
+                    
                 },
     
                 getNoOfDays() {
@@ -387,7 +427,6 @@
 
         }
     </script>
-<script src="../path/to/flowbite/dist/flowbite.min.js"></script>
 
 </body>
 </html>
