@@ -4,13 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gracious Calendar</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
     <link rel="dns-prefetch" href="//unpkg.com" />
 	<link rel="dns-prefetch" href="//cdn.jsdelivr.net" />
 	<link rel="stylesheet" href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css">
 	<script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.js" defer></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="src/output.css">
 
     <style>
 
@@ -54,6 +56,10 @@
 
         #eventsContainer{
             max-height: 150px;
+        }
+
+        #day-info{
+            margin-top: 180px;
         }
 
 
@@ -155,16 +161,11 @@
             #title-color-responsive{
                 margin: 0px;
             }
-
-
- 
-
   
         }
     </style>
 </head>
 <body class="">
-
 
     <div id="the-body" class="antialiased sans-serif">
 
@@ -173,17 +174,15 @@
             
             <div class="container mx-auto px-4 py-2 md:py-12 rounded-b-2xl" >
             <!-- <div class="rounded-b-2xl"> -->
-                
     
                 <div class="bg-white rounded-lg shadow rounded-t-2xl ">
-                    <div class="calendar-design rounded-t-2xl bg-gradient-to-r from-cyan-400 to-blue-400">
+                    <div class="calendar-design rounded-lg rounded-t-2xl bg-blue-600">
                         <img src="hr_admin/img/gracious.png" alt="gracious-logo">
                         <div id="title-logo" class=""> 
                             <p class="font-serif">GGLPC CALENDAR 
                                 <span x-text="year" id="yr" class="font-serif text-5xl"></span>
                             </p>
                         </div>
-                    
                     </div>
 
                     <div class="flex items-center justify-end py-2 px-6 ">
@@ -242,13 +241,13 @@
                             </template>	
                             <template x-for="(date, dateIndex) in no_of_days" :key="dateIndex">	
                                 <div id="border-responsiveness" class="px-4 pt-2 border-r-2 border-b-2 rounded-md relative"
-                                :class="{'bg-gradient-to-r from-cyan-400 to-blue-400 text-white': isToday(date) == true, 'text-gray-700': isToday(date) == false }">
+                                :class="{'bg-blue-200 ring-1 ring-gray-900/5 text-white': isToday(date) == true, 'text-gray-700': isToday(date) == false }">
                                     <div
                                         @click="showDayta(date)"
                                         id="days-num"
                                         x-text="date"
                                         class="inline-flex w-6 h-6 items-center justify-center text-center cursor-pointer font-serif leading-none rounded-full transition ease-in-out duration-100"
-                                        :class="{'bg-blue-500 text-white': isToday(date) == true, 'text-gray-700': isToday(date) == false }"	
+                                        :class="{'bg-blue-600 text-white': isToday(date) == true, 'text-gray-700': isToday(date) == false }"	
                                     ></div>
 
                                     <div id="scroll" class="max-h-[400px] overflow-y-auto [&::-webkit-scrollbar]:w-1 [&::-webkit-scrollbar-thumb]:bg-gray-300  ">
@@ -260,12 +259,12 @@
                                                 id="event-color"
                                                 class="event-color px-2 py-1 rounded-lg mt-1 overflow-hidden border text-center"
                                                 :class="{
-                                                    'border-blue-200 text-blue-800 bg-blue-100': event.event_theme === 'blue',
-                                                    'border-red-200 text-red-800 bg-red-100': event.event_theme === 'red',
-                                                    'border-orange-200 text-orange-800 bg-orange-100': event.event_theme === 'orange',
-                                                    'border-yellow-200 text-yellow-800 bg-yellow-100': event.event_theme === 'yellow',
-                                                    'border-green-200 text-green-800 bg-green-100': event.event_theme === 'green',
-                                                    'border-purple-200 text-purple-800 bg-purple-100': event.event_theme === 'purple'
+                                                    'border-blue-500 text-blue-800 bg-blue-300': event.event_theme === 'blue',
+                                                    'border-red-500 text-red-800 bg-red-300': event.event_theme === 'red',
+                                                    'border-orange-500 text-orange-800 bg-orange-300': event.event_theme === 'orange',
+                                                    'border-yellow-500 text-yellow-800 bg-yellow-300': event.event_theme === 'yellow',
+                                                    'border-green-500 text-green-800 bg-green-300': event.event_theme === 'green',
+                                                    'border-purple-500 text-purple-800 bg-purple-300': event.event_theme === 'purple'
                                                 }"
                                             >
                                                 <p x-text="event.event_title" id="title-responsive" class="text-sm font-serif text-ellipsis"></p>
@@ -299,12 +298,12 @@
                                     id="title-color-responsive"
                                     class="px-1 py-1 rounded-lg mt-1 overflow-hidden "
                                     :class="{
-                                        ' text-blue-800 ': event.event_theme === 'blue',
-                                        ' text-red-800 ': event.event_theme === 'red',
-                                        ' text-orange-800 ': event.event_theme === 'orange',
-                                        ' text-yellow-800 ': event.event_theme === 'yellow',
-                                        ' text-green-800 ': event.event_theme === 'green',
-                                        ' text-purple-800 ': event.event_theme === 'purple'
+                                        ' text-blue-900 ': event.event_theme === 'blue',
+                                        ' text-red-900 ': event.event_theme === 'red',
+                                        ' text-orange-900 ': event.event_theme === 'orange',
+                                        ' text-yellow-900 ': event.event_theme === 'yellow',
+                                        ' text-green-900 ': event.event_theme === 'green',
+                                        ' text-purple-900 ': event.event_theme === 'purple'
                                     }"
                                 >
                                     <div id="title-responsive-modal" class="text-lg mb-2 italic" x-text="event.event_title"></div>

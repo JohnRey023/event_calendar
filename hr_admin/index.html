@@ -4,13 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
     <link rel="dns-prefetch" href="//unpkg.com" />
 	<link rel="dns-prefetch" href="//cdn.jsdelivr.net" />
 	<link rel="stylesheet" href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css">
 	<script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.js" defer></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../src/output.css">
+
     <style>
 
         #editGear:hover{
@@ -32,6 +34,22 @@
             max-height: 150px;
         }
 
+        #editDelete{
+            background-color: rgb(255, 49, 49);
+        }
+
+        #editDelete:hover{
+            background-color: rgb(223, 46, 46);
+        }
+
+        #editCancel{
+            background-color: white;
+        }
+
+        #editCancel:hover{
+            background-color: rgb(219, 219, 219);
+            color: rgb(14, 14, 14);
+        }
 
         @media screen and (max-width: 750px) {
 
@@ -120,6 +138,10 @@
        
             }
 
+            #updateBtn:hover{
+                background-color: black;
+            }
+
             
 
         }
@@ -141,7 +163,7 @@
                         <div class="flex items-center justify-between py-6 px-6">
                             <div>
                                 <span x-text="MONTH_NAMES[month]" class="text-2xl font-bold text-gray-800 font-serif "></span>
-                                <span x-text="year" class="ml-1 text-2xl text-gray-600 font-normal font-serif"></span>
+                                <span x-text="year" class="ml-1 text-2xl text-gray-800 font-normal font-serif"></span>
                             </div>
                             
                             <div class="border rounded-lg px-1" style="padding-top: 2px;">
@@ -203,7 +225,7 @@
                                             @click="showEventModal(date)"
                                             x-text="date"
                                             class="inline-flex w-6 h-6 font-serif items-center justify-center cursor-pointer text-center leading-none rounded-full transition ease-in-out duration-100"
-                                            :class="{'bg-blue-500 text-white': isToday(date) == true, 'text-gray-700 hover:bg-blue-200': isToday(date) == false }"	
+                                            :class="{'bg-blue-500 text-white': isToday(date) == true, 'text-gray-700 hover:bg-blue-300': isToday(date) == false }"	
                                         ></div>
                                         <div style="height: 80px;" class="overflow-y-auto mt-1">
                                             <div id="update_settings" class="absolute top-0 right-0 mt-2 mr-2 inline-flex items-center justify-center rounded-full text-sm w-6 h-6 bg-gray-700 text-white leading-none">
@@ -221,12 +243,12 @@
                                                         id="event-color"
                                                         class="px-2 py-1 rounded-lg mt-1 overflow-hidden border text-center cursor-pointer"
                                                         :class="{
-                                                            'border-blue-200 text-blue-800 bg-blue-100': event.event_theme === 'blue',
-                                                            'border-red-200 text-red-800 bg-red-100': event.event_theme === 'red',
-                                                            'border-orange-200 text-orange-800 bg-orange-100': event.event_theme === 'orange',
-                                                            'border-yellow-200 text-yellow-800 bg-yellow-100': event.event_theme === 'yellow',
-                                                            'border-green-200 text-green-800 bg-green-100': event.event_theme === 'green',
-                                                            'border-purple-200 text-purple-800 bg-purple-100': event.event_theme === 'purple'
+                                                            'border-blue-500 text-blue-800 bg-blue-300': event.event_theme === 'blue',
+                                                            'border-red-500 text-red-800 bg-red-300': event.event_theme === 'red',
+                                                            'border-orange-500 text-orange-800 bg-orange-300': event.event_theme === 'orange',
+                                                            'border-yellow-500 text-yellow-800 bg-yellow-300': event.event_theme === 'yellow',
+                                                            'border-green-500 text-green-800 bg-green-300': event.event_theme === 'green',
+                                                            'border-purple-500 text-purple-800 bg-purple-300': event.event_theme === 'purple'
                                                         }"
                                                     >
                                                         <p x-text="event.event_title" id="title-responsive" class="text-sm font-serif"></p>
@@ -262,35 +284,32 @@
                          
                                 <div class="mb-4">
                                     <label class="text-gray-800 block mb-1 font-bold text-sm tracking-wide">Event title</label>
-                                    <input class="bg-gray-200 appearance-none border-2 border-gray-200 rounded-lg w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-500" type="text" id="event_title" x-model="event_title">
+                                    <input class="bg-gray-200 appearance-none border-2 border-gray-200 rounded-lg w-full py-2 px-4 text-gray-900 leading-tight focus:outline-none focus:bg-white focus:border-blue-500" type="text" id="event_title" x-model="event_title">
                                 </div>
             
                                 <div class="mb-4">
                                     <label class="text-gray-800 block mb-1 font-bold text-sm tracking-wide">Event date</label>
-                                    <input class="bg-gray-200 appearance-none border-2 border-gray-200 rounded-lg w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-500" type="text" id="event_date" x-model="event_date" readonly>
+                                    <input class="bg-gray-200 appearance-none border-2 border-gray-200 rounded-lg w-full py-2 px-4 text-gray-900 leading-tight focus:outline-none focus:bg-white focus:border-blue-500" type="text" id="event_date" x-model="event_date" readonly>
                                 </div>
             
                                 <div class="inline-block w-64 mb-4">
-                                    <label class="text-gray-800 block mb-1 font-bold text-sm tracking-wide">Select a theme</label>
+                                    <label class="text-gray-900 block mb-1 font-bold text-sm tracking-wide">Select a theme</label>
                                     <div class="relative">
-                                        <select @change="event_theme = $event.target.value;" id="event_theme" x-model="event_theme" class="block appearance-none w-full bg-gray-200 border-2 border-gray-200 hover:border-gray-500 px-4 py-2 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-blue-500 text-gray-700">
+                                        <select @change="event_theme = $event.target.value;" id="event_theme" x-model="event_theme" class="block appearance-none w-full text-gray-900 bg-gray-300 border-2 border-gray-300 hover:border-gray-700 px-4 py-2 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-blue-500 text-gray-700">
                                                 <template x-for="(theme, index) in themes">
                                                     <option :value="theme.value" x-text="theme.label"></option>
                                                 </template>
                                             
                                         </select>
-                                        <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-                                        <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
-                                        </div>
                                     </div>
                                 </div>
                                
 
                                 <div class="mt-8 text-right">
-                                    <button type="button" class="bg-white hover:bg-gray-100 text-gray-700 font-semibold py-2 px-4 border border-gray-300 rounded-lg shadow-sm mr-2" @click="openEventModal = !openEventModal">
+                                    <button type="button" class="bg-white hover:bg-gray-200 text-gray-900 font-semibold py-2 px-4 border border-gray-400 rounded-lg shadow-sm mr-2" @click="openEventModal = !openEventModal">
                                         Cancel
                                     </button>	
-                                    <button type="button" class="bg-gray-800 hover:bg-gray-700 text-white font-semibold py-2 px-4 border border-gray-700 rounded-lg shadow-sm" @click="addEvent()">
+                                    <button type="button" class="bg-gray-800 hover:bg-gray-900 text-white font-semibold py-2 px-4 border border-gray-900 rounded-lg shadow-sm" @click="addEvent()">
                                         Save Event
                                     </button>	
                                 </div>
@@ -312,11 +331,11 @@
                         </div>
                         <div class="shadow w-full rounded-lg bg-white overflow-hidden w-full block p-8">
                             <form action="" method="post">
-                                <h2 class="font-bold text-2xl mb-6 text-gray-800 border-b pb-2">Edit Event Details</h2>
+                                <h2 class="font-bold text-2xl mb-6 text-gray-900 border-b pb-2">Edit Event Details</h2>
                          
                                 <div class="mb-4">
                                     <label class="text-gray-800 block mb-1 font-bold text-sm tracking-wide">Event title</label>
-                                    <select id="update_event_title" class="block appearance-none w-full bg-gray-200 border-2 border-gray-200 hover:border-gray-500 px-4 py-2 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-blue-500 text-gray-700">
+                                    <select id="update_event_title" class="block appearance-none w-full bg-gray-200 border-2 border-gray-200 hover:border-gray-500 px-4 py-2 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-blue-500 text-gray-900">
                                         <template>
                                             
                                         </template>
@@ -325,37 +344,35 @@
     
                                 <div class="mb-4">
                                     <label class="text-gray-800 block mb-1 font-bold text-sm tracking-wide">New title</label>
-                                    <input class="bg-gray-200 appearance-none border-2 border-gray-200 rounded-lg w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-500" type="text" x-model="update_new_title" id="update_new_title" required>  
+                                    <input class="bg-gray-200 appearance-none border-2 border-gray-200 rounded-lg w-full py-2 px-4 text-gray-900 leading-tight focus:outline-none focus:bg-white focus:border-blue-500" type="text" x-model="update_new_title" id="update_new_title" required>  
                                     <input type="checkbox" name="sameTitle" id="sameTitle"> Same as above
                                 </div>
             
                                 <div class="mb-4">
                                     <label class="text-gray-800 block mb-1 font-bold text-sm tracking-wide">Event date</label>
-                                    <input class="bg-gray-200 appearance-none border-2 border-gray-200 rounded-lg w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-500" type="text" id="update_event_date" x-model="update_event_date" readonly>
+                                    <input class="bg-gray-200 appearance-none border-2 border-gray-200 rounded-lg w-full py-2 px-4 text-gray-900 leading-tight focus:outline-none focus:bg-white focus:border-blue-500" type="text" id="update_event_date" x-model="update_event_date" readonly>
                                 </div>
             
                                 <div class="inline-block w-64 mb-4">
                                     <label class="text-gray-800 block mb-1 font-bold text-sm tracking-wide">Select a theme</label>
                                     <div class="relative">
-                                        <select @change="update_event_theme = $event.target.value;" id="update_event_theme" x-model="update_event_theme" class="block appearance-none w-full bg-gray-200 border-2 border-gray-200 hover:border-gray-500 px-4 py-2 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-blue-500 text-gray-700">
+                                        <select @change="update_event_theme = $event.target.value;" id="update_event_theme" x-model="update_event_theme" class="block appearance-none w-full bg-gray-300 border-2 border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-blue-500 text-gray-900">
                                             <template x-for="(theme, index) in themes">
                                                 <option :value="theme.value" x-text="theme.label"></option>
                                             </template>                       
                                         </select>
-                                        <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-                                        <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
-                                        </div>
+                                        
                                     </div>
                                 </div>
              
                                 <div class="mt-8 text-right" id="edit_btn">
-                                    <button type="button" id= "editDelete" class="bg-red-600 hover:bg-red-700 text-sky-50 font-semibold py-2 px-4 border border-gray-300 rounded-lg shadow-sm mr-2" @click="deleteEvent()">
+                                    <button type="button" id="editDelete" class="font-semibold py-2 px-4 border border-gray-300 rounded-lg shadow-sm mr-2" @click="deleteEvent()">
                                         Delete
                                     </button>	
-                                    <button type="button" id= "editCancel" class="bg-white hover:bg-gray-100 text-gray-700 font-semibold py-2 px-4 border border-gray-300 rounded-lg shadow-sm mr-2" @click="editEventModal = !editEventModal">
+                                    <button type="button" id="editCancel" class="font-semibold py-2 px-4 border border-gray-500 rounded-lg shadow-sm mr-2" @click="editEventModal = !editEventModal">
                                         Cancel
                                     </button>	
-                                    <button type="button" class="bg-gray-800 hover:bg-gray-700 text-white font-semibold py-2 px-4 border border-gray-700 rounded-lg shadow-sm" @click="updateEventModal()">
+                                    <button type="button" id="updateBtn" class="bg-gray-800 hover:bg-gray-900 text-white font-semibold py-2 px-4 border border-gray-700 rounded-lg shadow-sm" @click="updateEventModal()">
                                         Update Event
                                     </button>	
                                 </div>
@@ -383,12 +400,12 @@
                                         id="title-color-responsive"
                                         class="px-1 py-1 rounded-lg mt-1 overflow-hidden "
                                         :class="{
-                                            ' text-blue-800 ': event.event_theme === 'blue',
-                                            ' text-red-800 ': event.event_theme === 'red',
-                                            ' text-orange-800 ': event.event_theme === 'orange',
-                                            ' text-yellow-800 ': event.event_theme === 'yellow',
-                                            ' text-green-800 ': event.event_theme === 'green',
-                                            ' text-purple-800 ': event.event_theme === 'purple'
+                                            ' text-blue-900 ': event.event_theme === 'blue',
+                                            ' text-red-900 ': event.event_theme === 'red',
+                                            ' text-orange-900 ': event.event_theme === 'orange',
+                                            ' text-yellow-900 ': event.event_theme === 'yellow',
+                                            ' text-green-900 ': event.event_theme === 'green',
+                                            ' text-purple-900 ': event.event_theme === 'purple'
                                         }"
                                     >
                                         <div id="title-responsive-modal" class="text-lg mb-2 italic" x-text="event.event_title"></div>
