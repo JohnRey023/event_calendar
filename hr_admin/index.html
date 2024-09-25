@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <!-- <script src="https://cdn.tailwindcss.com"></script> -->
-    <link rel="dns-prefetch" href="//unpkg.com" />
-	<link rel="dns-prefetch" href="//cdn.jsdelivr.net" />
+    <!-- <link rel="dns-prefetch" href="//unpkg.com" />
+	<link rel="dns-prefetch" href="//cdn.jsdelivr.net" /> -->
 	<link rel="stylesheet" href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css">
 	<script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.js" defer></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -14,6 +14,10 @@
     <link rel="stylesheet" href="../src/output.css">
 
     <style>
+
+        #day-info{
+            margin-top: 100px;
+        }
 
         #editGear:hover{
             cursor: pointer;
@@ -50,6 +54,11 @@
             background-color: rgb(219, 219, 219);
             color: rgb(14, 14, 14);
         }
+
+        #event_dates{
+            font-size: 25px;
+        }
+    
 
         @media screen and (max-width: 750px) {
 
@@ -390,7 +399,7 @@
                             </svg>
                         </div>
                         <div class="shadow w-full rounded-lg bg-white overflow-hidden w-full block p-8">
-                            <input class="text-center w-full text-xl text-red-600 font-bold mb-8 border-0 border-none outline-none italic" type="text" id="event_date" x-model="event_date" readonly>
+                            <input class="text-center w-full text-xl text-red-600 font-bold mb-8 border-0 border-none outline-none italic" type="text" id="event_dates" x-model="event_date" readonly>
                             <h2 id="sched-day" class="font-bold text-2xl mb-8 text-gray-800 border-b pb-2 italic">Schedule for the day</h2>
                             <div id="eventsContainer" class="overflow-y-auto [&::-webkit-scrollbar]:w-1 [&::-webkit-scrollbar-thumb]:bg-gray-300">
                                 
@@ -420,7 +429,7 @@
         
     </div>
 
-    <script src="../script.js"></script>
+    <!-- <script src="../script.js"></script> -->
     <script>
 
         const MONTH_NAMES = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
