@@ -54,7 +54,17 @@
         #event_dates{
             font-size: 25px;
         }
-    
+        
+        #update_settings{
+            background-color: rgb(65, 65, 65);
+        }
+
+        .app{
+            margin-top: 30px;
+            padding: 20px;
+        }
+
+     
 
         @media screen and (max-width: 750px) {
 
@@ -147,7 +157,10 @@
                 background-color: black;
             }
 
-            
+            .app{
+                margin-top: 40px;
+                padding: 0px;
+            }
 
         }
 
@@ -163,7 +176,7 @@
             
                 <div class="container mx-auto px-4 py-2">
         
-                    <div class="bg-white rounded-lg shadow overflow-hidden">
+                    <div class="app bg-white rounded-lg shadow overflow-hidden">
         
                         <div class="flex items-center justify-between py-6 px-6">
                             <div>
@@ -221,11 +234,11 @@
                                 <template x-for="blankday in blankdays">
                                     <div 
                                         style="width: 14.28%; height: 120px"
-                                        class="text-center border-r border-b px-4 pt-2"	
+                                        class="text-center border-r-2 border-b-2 px-4 pt-2"	
                                     ></div>
                                 </template>	
                                 <template x-for="(date, dateIndex) in no_of_days" :key="dateIndex">	
-                                    <div style="width: 14.28%; height: 120px" class="px-4 pt-2 border-r border-b relative">
+                                    <div style="width: 14.28%; height: 120px" class="px-4 pt-2 border-r-2 border-b-2 relative">
                                         <div
                                             @click="showEventModal(date)"
                                             x-text="date"
@@ -233,7 +246,7 @@
                                             :class="{'bg-blue-500 text-white': isToday(date) == true, 'text-gray-700 hover:bg-blue-300': isToday(date) == false }"	
                                         ></div>
                                         <div style="height: 80px;" class="overflow-y-auto mt-1">
-                                            <div id="update_settings" class="absolute top-0 right-0 mt-2 mr-2 inline-flex items-center justify-center rounded-full text-sm w-6 h-6 bg-gray-700 text-white leading-none">
+                                            <div id="update_settings" class="absolute top-0 right-0 mt-2 mr-2 inline-flex items-center justify-center rounded-full text-sm w-6 h-6 text-white leading-none">
                                                 <div class="update_gear">
                                                     <i @click="editShowEventModal(date)" class="fa-solid fa-gear" id="editGear"></i>
                                                 </div>

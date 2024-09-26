@@ -40,7 +40,8 @@
 
         #blank-days{
             width: 14.28%; 
-            height: 120px
+            height: 120px;
+          
         }
 
         #scroll{
@@ -58,6 +59,10 @@
         #event_date{
             font-size: 25px;
         }
+
+        
+
+       
 
 
         @media screen and (max-width: 750px) {
@@ -232,11 +237,11 @@
                         <div id="main-border" class="flex flex-wrap rounded-2xl">
                             <template x-for="blankday in blankdays">
                                 <div id="blank-days"
-                                    class="text-center border-r-2 border-b px-4 pt-2"	
+                                    class="text-center border-r-2 border-b-2 px-4 pt-2"	
                                 ></div>
                             </template>	
                             <template x-for="(date, dateIndex) in no_of_days" :key="dateIndex">	
-                                <div id="border-responsiveness" class="px-4 pt-2 border-r-2 border-b-2 rounded-md relative"
+                                <div id="border-responsiveness" class="px-4 pt-2 border-r-2 border-b-2 relative"
                                 :class="{'bg-blue-200 ring-1 ring-gray-900/5 text-white': isToday(date) == true, 'text-gray-700': isToday(date) == false }">
                                     <div
                                         @click="showDayta(date)"
