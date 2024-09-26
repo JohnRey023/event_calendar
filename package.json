@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "tailwindcss -i ./src/input.css -o ./src/output.css --watch"
+    "dev": "tailwindcss -i ./src/input.css -o ./src/output.css --watch",
+    "alpine": "npx esbuild src/alpine.js --outfile=alpine.js --bundle --watch"
   },
   "author": "",
   "license": "ISC",

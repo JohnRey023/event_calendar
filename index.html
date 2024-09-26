@@ -5,15 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gracious Calendar</title>
 
-    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
-    <!-- <link rel="dns-prefetch" href="//unpkg.com" />
-	<link rel="dns-prefetch" href="//cdn.jsdelivr.net" /> -->
-	<link rel="stylesheet" href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css">
-	<script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.js" defer></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="src/output.css">
-
+    <link rel="stylesheet" href="output.css">
 
     <style>
 
@@ -43,7 +37,6 @@
             height: 120px
 
         }
-
 
         #blank-days{
             width: 14.28%; 
@@ -175,12 +168,11 @@
 
         <div id="main-calendar" class="" x-data="app()" x-init="[initDate(), getNoOfDays()]" x-cloak>
             
-            
             <div class="container mx-auto px-4 py-2 md:py-12 rounded-b-2xl" >
             <!-- <div class="rounded-b-2xl"> -->
     
                 <div class="bg-white rounded-lg shadow rounded-t-2xl ">
-                    <div class="calendar-design rounded-lg rounded-t-2xl bg-blue-600">
+                    <div class="calendar-design rounded-t-2xl bg-blue-500">
                         <img src="hr_admin/img/gracious.png" alt="gracious-logo">
                         <div id="title-logo" class=""> 
                             <p class="font-serif">GGLPC CALENDAR 
@@ -261,14 +253,14 @@
                                             <div
                                                 
                                                 id="event-color"
-                                                class="event-color px-2 py-1 rounded-lg mt-1 overflow-hidden border text-center"
+                                                class="event-color px-2 py-1 rounded-lg mt-1 overflow-hidden text-center"
                                                 :class="{
-                                                    'border-blue-500 text-blue-800 bg-blue-300': event.event_theme === 'blue',
-                                                    'border-red-500 text-red-800 bg-red-300': event.event_theme === 'red',
-                                                    'border-orange-500 text-orange-800 bg-orange-300': event.event_theme === 'orange',
-                                                    'border-yellow-500 text-yellow-800 bg-yellow-300': event.event_theme === 'yellow',
-                                                    'border-green-500 text-green-800 bg-green-300': event.event_theme === 'green',
-                                                    'border-purple-500 text-purple-800 bg-purple-300': event.event_theme === 'purple'
+                                                    'text-blue-800 bg-blue-300': event.event_theme === 'blue',
+                                                    'text-red-800 bg-red-300': event.event_theme === 'red',
+                                                    'text-orange-800 bg-orange-300': event.event_theme === 'orange',
+                                                    'text-yellow-800 bg-yellow-300': event.event_theme === 'yellow',
+                                                    'text-green-800 bg-green-300': event.event_theme === 'green',
+                                                    'text-purple-800 bg-purple-300': event.event_theme === 'purple'
                                                 }"
                                             >
                                                 <p x-text="event.event_title" id="title-responsive" class="text-sm font-serif text-ellipsis"></p>
@@ -319,7 +311,6 @@
                 </div>
             </div>
         </div>    
-         
     </div>
 
     <script>
@@ -430,6 +421,6 @@
 
         }
     </script>
-
+    <script src="alpine.js"></script>
 </body>
 </html>
